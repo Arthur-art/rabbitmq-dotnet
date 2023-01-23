@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 using System.Text;
 using System.Text.Json;
 using WebApiRabbitmq.Domain;
@@ -8,7 +9,7 @@ using WebApiRabbitmq.Domain;
 namespace WebApiRabbitmq.Controllers
 {
     [AllowAnonymous]
-    [Route("api/[controller]")]
+    [Route("api/order-rabbitmq")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -19,7 +20,7 @@ namespace WebApiRabbitmq.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost("create-publish-queue")]
         public ActionResult InserOrder(Order order)
         {
             try
@@ -42,6 +43,7 @@ namespace WebApiRabbitmq.Controllers
                                          basicProperties: null,
                                          body: body);
                     Console.WriteLine(" [x] Sent {0}", message);
+
                 }
 
                 return Accepted(order);
@@ -49,6 +51,39 @@ namespace WebApiRabbitmq.Controllers
             {
                 _logger.LogError("Erro ao tentar criar um novo pedido", ex);
                 return new StatusCodeResult(500);
+            }
+        }
+
+        [HttpGet("consumer-queue")]
+        public void ConsumerQueue(string queueNameConsumer, string queueNamePublisher )
+        {
+            var factory = new ConnectionFactory() { HostName = "localhost" };
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: queueNamePublisher, false, false, false, null);
+
+                    var consumer = new EventingBasicConsumer(channel);
+                    consumer.Received += (model, ea) =>
+                    {
+                        var body = ea.Body.ToArray();
+                        var message = Encoding.UTF8.GetString(body);
+                        Console.WriteLine("[x] Received {0}", message);
+
+                        channel.BasicPublish(
+                            exchange: "",
+                            routingKey: queueNamePublisher,
+                            basicProperties: null,
+                            body: body
+                        );
+                    };
+                    channel.BasicConsume(queue: queueNameConsumer,
+                                        autoAck: true,
+                                        consumer: consumer);
+                    Console.WriteLine("Press [enter] to exit.");
+                    Console.ReadLine();
+                }
             }
         }
     }
