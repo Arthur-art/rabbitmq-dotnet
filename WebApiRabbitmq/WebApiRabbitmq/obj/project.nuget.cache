@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "or7zYzxpT6OlHdVuEktVr4u7x98UgdfgzZ38ILRKEgQVueUOp0/AdwvjXP7M5jpAnwRdytDbDf+z4TQkzKFibg==",
+  "dgSpecHash": "bZ8E7GUC+bk5lYJdCEJdn7Vvj8//ZNH9tKXQWS3TY6/fSmjjXRNg9pOeIz7yYrmYRYWGVs/IXIkFWEAP0fGTmw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-easynetq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
+  "projectFilePath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arthu\\.nuget\\packages\\masstransit\\8.0.11\\masstransit.8.0.11.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\masstransit.abstractions\\8.0.11\\masstransit.abstractions.8.0.11.nupkg.sha512",

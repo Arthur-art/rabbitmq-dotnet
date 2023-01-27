@@ -21,7 +21,7 @@ namespace WebApiRabbitmq.Controllers
         }
 
         [HttpPost("create-publish-queue")]
-        public ActionResult InserOrder(Order order)
+        public ActionResult InserOrder(Order order, string queue)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace WebApiRabbitmq.Controllers
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
-                    channel.QueueDeclare(queue: "orderQueue",
+                    channel.QueueDeclare(queue: queue,
                                          durable: false,
                                          exclusive: false,
                                          autoDelete: false,
@@ -39,7 +39,7 @@ namespace WebApiRabbitmq.Controllers
                     var body = Encoding.UTF8.GetBytes(message);
 
                     channel.BasicPublish(exchange: "",
-                                         routingKey: "orderQueue",
+                                         routingKey: queue,
                                          basicProperties: null,
                                          body: body);
                     Console.WriteLine(" [x] Sent {0}", message);
@@ -54,7 +54,7 @@ namespace WebApiRabbitmq.Controllers
             }
         }
 
-        [HttpGet("consumer-queue")]
+        [HttpPost("consumer-queue")]
         public void ConsumerQueue(string queueNameConsumer, string queueNamePublisher )
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
