@@ -9,19 +9,19 @@ using WebApiRabbitmq.Domain;
 namespace WebApiRabbitmq.Controllers
 {
     [AllowAnonymous]
-    [Route("api/order-rabbitmq")]
+    [Route("api/user-queue-rabbitmq")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private ILogger<OrderController> _logger;
+        private ILogger<UserController> _logger;
 
-        public OrderController(ILogger<OrderController> logger)
+        public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
         }
 
         [HttpPost("create-publish-queue")]
-        public ActionResult InserOrder(Order order, string queue)
+        public ActionResult InsertUser(User user, string queue)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace WebApiRabbitmq.Controllers
                                          autoDelete: false,
                                          arguments: null);
 
-                    string message = JsonSerializer.Serialize(order);
+                    string message = JsonSerializer.Serialize(user);
                     var body = Encoding.UTF8.GetBytes(message);
 
                     channel.BasicPublish(exchange: "",
@@ -46,7 +46,7 @@ namespace WebApiRabbitmq.Controllers
 
                 }
 
-                return Accepted(order);
+                return Accepted(user);
             }catch(Exception ex)
             {
                 _logger.LogError("Erro ao tentar criar um novo pedido", ex);
@@ -54,7 +54,7 @@ namespace WebApiRabbitmq.Controllers
             }
         }
 
-        [HttpPost("consumer-queue")]
+        [HttpPost("consumer-publisher-queue")]
         public void ConsumerQueue(string queueNameConsumer, string queueNamePublisher )
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
@@ -85,6 +85,47 @@ namespace WebApiRabbitmq.Controllers
                     Console.ReadLine();
                 }
             }
+        }
+
+        [HttpGet("consumer-queue")]
+        public string[] ConsumerOrderQueue(string queueNameConsumer)
+        {
+            List<string> message = new List<string>() {""};
+            var factory = new ConnectionFactory() { HostName = "localhost" };
+            using (var connection = factory.CreateConnection())
+            {
+                
+                using (var channel = connection.CreateModel())
+                {
+
+                    var consumer = new EventingBasicConsumer(channel);
+                    
+                    consumer.Received += (model, ea) =>
+                    {
+                        try
+                        {
+                            var body = ea.Body.ToArray();
+                            var newMessage = Encoding.UTF8.GetString(body);
+                            Console.WriteLine("[x] Received {0}", newMessage);
+                            message.Add(newMessage);
+                           
+                        }
+                        catch(Exception ex)
+                        {
+                            _logger.LogError("Erro ao tentar criar um novo pedido", ex);
+                        }
+                        
+                    };
+                    channel.BasicConsume(queue: queueNameConsumer,
+                                        autoAck: true,
+                                        consumer: consumer);
+                    Console.WriteLine("Press [enter] to exit.");
+                    Console.ReadLine();
+                   
+                }
+            }
+            Console.WriteLine("[x] message {0}", message.ToArray());
+            return message.ToArray();
         }
     }
 }
