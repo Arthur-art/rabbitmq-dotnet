@@ -14,6 +14,13 @@ namespace WebApiRabbitmq.Controllers
     public class UserController : ControllerBase
     {
         private ILogger<UserController> _logger;
+        string[] deadLetters = {
+            "DeadLetterRunningQueue1",
+            "DeadLetterRunningQueue2",
+            "DeadLetterRunningQueue3",
+            "DeadLetterRunningQueue4",
+            "DeadLetterRunningQueue5"
+        };
 
         public UserController(ILogger<UserController> logger)
         {
@@ -29,27 +36,27 @@ namespace WebApiRabbitmq.Controllers
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
-                    channel.QueueDeclare(queue: "DeathQueue1",
+                    channel.QueueDeclare(queue: "DeadLetterRunningQueue1",
                                          durable: false,
                                          exclusive: false,
                                          autoDelete: false,
                                          arguments: null);
-                    channel.QueueDeclare(queue: "DeathQueue2",
+                    channel.QueueDeclare(queue: "DeadLetterRunningQueue2",
                                          durable: false,
                                          exclusive: false,
                                          autoDelete: false,
                                          arguments: null);
-                    channel.QueueDeclare(queue: "DeathQueue3",
+                    channel.QueueDeclare(queue: "DeadLetterRunningQueue3",
                                          durable: false,
                                          exclusive: false,
                                          autoDelete: false,
                                          arguments: null);
-                    channel.QueueDeclare(queue: "DeathQueue4",
+                    channel.QueueDeclare(queue: "DeadLetterRunningQueue4",
                                          durable: false,
                                          exclusive: false,
                                          autoDelete: false,
                                          arguments: null);
-                    channel.QueueDeclare(queue: "DeathQueue5",
+                    channel.QueueDeclare(queue: "DeadLetterRunningQueue5",
                                          durable: false,
                                          exclusive: false,
                                          autoDelete: false,
@@ -92,23 +99,23 @@ namespace WebApiRabbitmq.Controllers
                     var body5 = Encoding.UTF8.GetBytes(message5);
 
                     channel.BasicPublish(exchange: "",
-                                         routingKey: "DeathQueue1",
+                                         routingKey: "DeadLetterRunningQueue1",
                                          basicProperties: null,
                                          body: body1);
                     channel.BasicPublish(exchange: "",
-                                       routingKey: "DeathQueue2",
+                                       routingKey: "DeadLetterRunningQueue2",
                                        basicProperties: null,
                                        body: body2);
                     channel.BasicPublish(exchange: "",
-                                       routingKey: "DeathQueue3",
+                                       routingKey: "DeadLetterRunningQueue3",
                                        basicProperties: null,
                                        body: body3);
                     channel.BasicPublish(exchange: "",
-                                       routingKey: "DeathQueue4",
+                                       routingKey: "DeadLetterRunningQueue4",
                                        basicProperties: null,
                                        body: body4);
                     channel.BasicPublish(exchange: "",
-                                       routingKey: "DeathQueue5",
+                                       routingKey: "DeadLetterRunningQueue5",
                                        basicProperties: null,
                                        body: body5);
 
@@ -127,143 +134,34 @@ namespace WebApiRabbitmq.Controllers
             {
                 using (var channel = connection.CreateModel())
                 {
-                    channel.QueueDeclare(queue: "RunningQueue1", false, false, false, null);
-                    channel.QueueDeclare(queue: "RunningQueue2", false, false, false, null);
-                    channel.QueueDeclare(queue: "RunningQueue3", false, false, false, null);
-                    channel.QueueDeclare(queue: "RunningQueue4", false, false, false, null);
-                    channel.QueueDeclare(queue: "RunningQueue5", false, false, false, null);
 
-                    var consumer1 = new EventingBasicConsumer(channel);
-                    consumer1.Received += (model, ea) =>
+                    foreach (string deadLetterQueue in deadLetters)
                     {
-                        var body = ea.Body.ToArray();
-                        var message = Encoding.UTF8.GetString(body);
-                        Console.WriteLine("[x] Received {0}", message);
 
-                        channel.BasicPublish(
-                            exchange: "",
-                            routingKey: "RunningQueue1",
-                            basicProperties: null,
-                            body: body
-                        );
-                    };
-                    channel.BasicConsume(queue: "DeathQueue1",
-                                        autoAck: true,
-                                        consumer: consumer1);
-                    var consumer2 = new EventingBasicConsumer(channel);
-                    consumer2.Received += (model, ea) =>
-                    {
-                        var body = ea.Body.ToArray();
-                        var message = Encoding.UTF8.GetString(body);
-                        Console.WriteLine("[x] Received {0}", message);
+                        channel.QueueDeclare(queue: deadLetterQueue.Replace("DeadLetter", ""), false, false, false, null);
 
-                        channel.BasicPublish(
-                            exchange: "",
-                            routingKey: "RunningQueue2",
-                            basicProperties: null,
-                            body: body
-                        );
-                    };
-                    channel.BasicConsume(queue: "DeathQueue2",
-                                        autoAck: true,
-                                        consumer: consumer2);
-                    var consumer3 = new EventingBasicConsumer(channel);
-                    consumer3.Received += (model, ea) =>
-                    {
-                        var body = ea.Body.ToArray();
-                        var message = Encoding.UTF8.GetString(body);
-                        Console.WriteLine("[x] Received {0}", message);
-
-                        channel.BasicPublish(
-                            exchange: "",
-                            routingKey: "RunningQueue3",
-                            basicProperties: null,
-                            body: body
-                        );
-                    };
-                    channel.BasicConsume(queue: "DeathQueue3",
-                                        autoAck: true,
-                                        consumer: consumer3);
-                    var consumer4 = new EventingBasicConsumer(channel);
-                    consumer4.Received += (model, ea) =>
-                    {
-                        var body = ea.Body.ToArray();
-                        var message = Encoding.UTF8.GetString(body);
-                        Console.WriteLine("[x] Received {0}", message);
-
-                        channel.BasicPublish(
-                            exchange: "",
-                            routingKey: "RunningQueue4",
-                            basicProperties: null,
-                            body: body
-                        );
-                    };
-                    channel.BasicConsume(queue: "DeathQueue4",
-                                        autoAck: true,
-                                        consumer: consumer4);
-                    var consumer5 = new EventingBasicConsumer(channel);
-                    consumer5.Received += (model, ea) =>
-                    {
-                        var body = ea.Body.ToArray();
-                        var message = Encoding.UTF8.GetString(body);
-                        Console.WriteLine("[x] Received {0}", message);
-
-                        channel.BasicPublish(
-                            exchange: "",
-                            routingKey: "RunningQueue5",
-                            basicProperties: null,
-                            body: body
-                        );
-                    };
-                    channel.BasicConsume(queue: "DeathQueue5",
-                                        autoAck: true,
-                                        consumer: consumer5);
-                    Console.WriteLine("Press [enter] to exit.");
-                    Console.ReadLine();
-                }
-            }
-        }
-
-        [HttpGet("consumer-queue")]
-        public string[] ConsumerOrderQueue(string queueNameConsumer)
-        {
-            List<string> message = new List<string>() {""};
-            var factory = new ConnectionFactory() { HostName = "localhost" };
-            using (var connection = factory.CreateConnection())
-            {
-                
-                using (var channel = connection.CreateModel())
-                {
-
-                    var consumer = new EventingBasicConsumer(channel);
-                    
-                    consumer.Received += async (model, ea) =>
-                    {
-                        try
+                        var consumer = new EventingBasicConsumer(channel);
+                        consumer.Received += (model, ea) =>
                         {
                             var body = ea.Body.ToArray();
-                            var newMessage = Encoding.UTF8.GetString(body);
-                            Console.WriteLine("[x] Received {0}", newMessage);
-                            message.Add(newMessage);
-                            channel.BasicAck(ea.DeliveryTag, false);
-                        }
-                        catch(Exception ex)
-                        {
-                            _logger.LogError("Erro ao tentar criar um novo pedido", ex);
-                            channel.BasicNack(ea.DeliveryTag, false, true);
-                        }
-                        
-                    };
-                    channel.BasicConsume(queue: queueNameConsumer,
-                                        autoAck: true,
-                                        consumer: consumer);
+                            var message = Encoding.UTF8.GetString(body);
+                            Console.WriteLine("[x] Received {0}", message);
+
+                            channel.BasicPublish(
+                                exchange: "",
+                                routingKey: deadLetterQueue.Replace("DeadLetter", ""),
+                                basicProperties: null,
+                                body: body
+                            );
+                        };
+                        channel.BasicConsume(queue: deadLetterQueue,
+                                                        autoAck: true,
+                                                        consumer: consumer);
+                    }
                     Console.WriteLine("Press [enter] to exit.");
                     Console.ReadLine();
-
                 }
             }
-            Console.WriteLine("[x] message {0}");
-            return message.ToArray();
         }
     }
 }
