@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,11 +12,13 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
+var startInfo = new ProcessStartInfo();
+startInfo.FileName = "http://localhost:5000/swagger/index.html";
+startInfo.UseShellExecute = true;
+Process.Start(startInfo);
 
 app.UseAuthorization();
 

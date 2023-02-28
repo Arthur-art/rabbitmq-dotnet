@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj": {}
+    "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj": {
+    "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
+        "projectUniqueName": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
         "projectName": "WebApiRabbitmq",
-        "projectPath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
+        "projectPath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
         "packagesPath": "C:\\Users\\arthu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\obj\\",
+        "outputPath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\arthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Swashbuckle": {
+              "target": "Package",
+              "version": "[5.6.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -30,94 +30,39 @@ namespace WebApiRabbitmq.Controllers
         [HttpPost("create-publish-queue")]
         public void InsertUser(User[] user)
         {
+            int num = 1;
             try
             {
                 var factory = new ConnectionFactory() { HostName = "localhost" };
-                using (var connection = factory.CreateConnection())
-                using (var channel = connection.CreateModel())
+                var connection = factory.CreateConnection();
+                var channel = connection.CreateModel();
                 {
-                    channel.QueueDeclare(queue: "DeadLetterRunningQueue1",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "DeadLetterRunningQueue2",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "DeadLetterRunningQueue3",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "DeadLetterRunningQueue4",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "DeadLetterRunningQueue5",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "RunningQueue1",
+                    foreach (string deadLetter in deadLetters)
+                    {
+                        channel.QueueDeclare(queue: deadLetter,
                                         durable: false,
                                         exclusive: false,
                                         autoDelete: false,
                                         arguments: null);
-                    channel.QueueDeclare(queue: "RunningQueue2",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "RunningQueue3",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "RunningQueue4",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
-                    channel.QueueDeclare(queue: "RunningQueue5",
-                                         durable: false,
-                                         exclusive: false,
-                                         autoDelete: false,
-                                         arguments: null);
+                        channel.QueueDeclare(queue: deadLetter.Replace("DeadLetter", ""),
+                                        durable: false,
+                                        exclusive: false,
+                                        autoDelete: false,
+                                        arguments: null);
+                    }
 
-                    string message1 = JsonSerializer.Serialize(user[0]);
-                    var body1 = Encoding.UTF8.GetBytes(message1);
-                    string message2 = JsonSerializer.Serialize(user[1]);
-                    var body2 = Encoding.UTF8.GetBytes(message2);
-                    string message3 = JsonSerializer.Serialize(user[2]);
-                    var body3 = Encoding.UTF8.GetBytes(message3);
-                    string message4 = JsonSerializer.Serialize(user[3]);
-                    var body4 = Encoding.UTF8.GetBytes(message4);
-                    string message5 = JsonSerializer.Serialize(user[4]);
-                    var body5 = Encoding.UTF8.GetBytes(message5);
+                    foreach (User data in user)
+                    {
+                        
+                        string message = JsonSerializer.Serialize(data);
+                        var body = Encoding.UTF8.GetBytes(message);
 
-                    channel.BasicPublish(exchange: "",
-                                         routingKey: "DeadLetterRunningQueue1",
+                        channel.BasicPublish(exchange: "",
+                                         routingKey: "DeadLetterRunningQueue" + $"{num}",
                                          basicProperties: null,
-                                         body: body1);
-                    channel.BasicPublish(exchange: "",
-                                       routingKey: "DeadLetterRunningQueue2",
-                                       basicProperties: null,
-                                       body: body2);
-                    channel.BasicPublish(exchange: "",
-                                       routingKey: "DeadLetterRunningQueue3",
-                                       basicProperties: null,
-                                       body: body3);
-                    channel.BasicPublish(exchange: "",
-                                       routingKey: "DeadLetterRunningQueue4",
-                                       basicProperties: null,
-                                       body: body4);
-                    channel.BasicPublish(exchange: "",
-                                       routingKey: "DeadLetterRunningQueue5",
-                                       basicProperties: null,
-                                       body: body5);
+                                         body: body);
+                        num++;
+                    }
 
                 }
             }catch(Exception ex)

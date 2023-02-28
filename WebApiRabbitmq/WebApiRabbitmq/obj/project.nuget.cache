@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "bZ8E7GUC+bk5lYJdCEJdn7Vvj8//ZNH9tKXQWS3TY6/fSmjjXRNg9pOeIz7yYrmYRYWGVs/IXIkFWEAP0fGTmw==",
+  "dgSpecHash": "c0khm9YDMwnJpJsXj1HluMVnSh6CB8pVmh9sNX0R8jiwv9SVh7h8UxaleFkZFcFuuxu7MwoivdWIS/yfdO2+KQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\1-Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
+  "projectFilePath": "C:\\Users\\arthu\\OneDrive\\Documentos\\Repository\\Github\\rabbitmq-dotnet\\WebApiRabbitmq\\WebApiRabbitmq\\WebApiRabbitmq.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arthu\\.nuget\\packages\\masstransit\\8.0.11\\masstransit.8.0.11.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\masstransit.abstractions\\8.0.11\\masstransit.abstractions.8.0.11.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\masstransit.rabbitmq\\8.0.11\\masstransit.rabbitmq.8.0.11.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\microsoft.aspnet.webapi.client\\4.0.20710\\microsoft.aspnet.webapi.client.4.0.20710.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\microsoft.aspnet.webapi.core\\4.0.20710\\microsoft.aspnet.webapi.core.4.0.20710.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\microsoft.aspnet.webapi.webhost\\4.0.20710\\microsoft.aspnet.webapi.webhost.4.0.20710.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.0\\microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.18\\microsoft.extensions.configuration.abstractions.3.1.18.nupkg.sha512",
@@ -18,12 +21,17 @@
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.18\\microsoft.extensions.logging.abstractions.3.1.18.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.extensions.options\\3.1.18\\microsoft.extensions.options.3.1.18.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.18\\microsoft.extensions.primitives.3.1.18.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\microsoft.net.http\\2.0.20710\\microsoft.net.http.2.0.20710.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\microsoft.web.infrastructure\\1.0.0\\microsoft.web.infrastructure.1.0.0.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\newtonsoft.json\\7.0.1\\newtonsoft.json.7.0.1.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\rabbitmq.client\\6.4.0\\rabbitmq.client.6.4.0.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\swashbuckle\\5.6.0\\swashbuckle.5.6.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\swashbuckle.core\\5.6.0\\swashbuckle.core.5.6.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
@@ -31,7 +39,89 @@
     "C:\\Users\\arthu\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\system.text.json\\6.0.2\\system.text.json.6.0.2.nupkg.sha512",
-    "C:\\Users\\arthu\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
+    "C:\\Users\\arthu\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\webactivatorex\\2.0.0\\webactivatorex.2.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Client 4.0.20710' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Client",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 4.0.20710' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Core",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.WebHost 4.0.20710' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.WebHost",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Net.Http 2.0.20710' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Net.Http",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Web.Infrastructure",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Newtonsoft.Json 7.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Swashbuckle.Core 5.6.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Swashbuckle.Core",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'WebActivatorEx 2.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "WebActivatorEx",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }
